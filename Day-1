@@ -1,0 +1,64 @@
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		for(int i=0;i<t;i++){
+			int n=sc.nextInt();
+			int s=sc.nextInt();
+			int []m=new int[n];
+			for(int j=0;j<n;j++){
+				m[j]=sc.nextInt();
+			}
+			Solution obj=new Solution();
+			ArrayList<Integer> res=obj.subarraySum(m,n,s);
+			for(int ii=0;ii<res.size();ii++)
+			System.out.print(res.get(ii)+ " ");
+			System.out.println();
+		}
+	}
+}
+class Solution
+{
+    //Function to find a continuous sub-array which adds up to a given number.
+    static ArrayList<Integer> subarraySum(int[] arr, int n, int s) 
+    {
+        // Your code here
+        ArrayList<Integer> ans = new ArrayList<Integer>();
+        boolean f=false;
+        int i,sum=0,end=0,start=0;
+        for(i=0;i<n;i++){
+            sum+=arr[i];
+            if(sum>=s){
+               end=i ;
+            
+            while(start<end && s<sum){
+                sum-=arr[start];
+                ++start;
+            }
+            if(sum==s){
+               ans.add(start+1);
+               ans.add(end+1);
+               f=true;
+               break;
+               
+            }
+        }
+            
+    }
+        if(f==false){
+            ans.add(-1);
+        }
+        
+        return ans;
+        
+    }
+}
