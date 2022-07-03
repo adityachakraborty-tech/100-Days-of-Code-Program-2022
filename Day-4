@@ -1,0 +1,64 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class gfg
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+        BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+        int testcases=Integer.parseInt(br.readLine());
+        while(testcases-- >0){
+            int sizeOfArray=Integer.parseInt(br.readLine());
+            int arr[]=new int[sizeOfArray];
+
+            String line=br.readLine();
+            String[] elements=line.trim().split("\\s+");
+
+            for(int i=0;i<sizeOfArray;i++){
+                arr[i]=Integer.parseInt(elements[i]);
+
+            }
+            int sizeOfArray_M=Integer.parseInt(br.readLine());
+            int brr[]=new int[sizeOfArray_M];
+
+            line=br.readLine();
+            String[] ele=line.trim().split("\\s+");
+             for(int i=0;i<sizeOfArray_M;i++){
+                brr[i]=Integer.parseInt(ele[i]);
+
+            }
+            Solution obj=new Solution();
+            long res=obj.find_multiplication(arr,brr,sizeOfArray,sizeOfArray_M);
+            System.out.println(res);
+        }
+
+	}
+
+}
+class Solution{
+    
+    // Function for finding maximum and value pair
+    public static long find_multiplication (int arr[], int brr[], int n, int m) {
+        // Complete the Function
+        int i;
+        long min=brr[0];
+        long max=arr[0];
+        for(i=1;i<n;i++){
+            if(arr[i]>max){
+                max=arr[i];
+            }
+        }
+        for(i=0;i<m;i++){
+            if(brr[i]<min){
+                min=brr[i];
+            }
+        }
+       long res= max*min;
+        return res;
+    }
+    
+    
+}
