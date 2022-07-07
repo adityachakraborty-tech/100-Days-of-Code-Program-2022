@@ -1,0 +1,53 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+
+        int t=Integer.parseInt(br.readLine().trim()); 
+    
+        while (t-->0) {
+        int n= Integer.parseInt(br.readLine().trim());
+        long arr[]= new long[n];
+        String inputLine[] = br.readLine().trim().split(" ");
+        for (int i = 0; i < n; i++) {
+
+          arr[i]=Long.parseLong(inputLine[i]);
+        }
+            Solution ob= new Solution();
+        System.out.println(ob.equilibriumPoint(arr, n));
+
+	             }     
+    }    
+}
+
+class Solution {
+
+    
+    // a: input array
+    // n: size of array
+    // Function to find equilibrium point in the array.
+    public static int equilibriumPoint(long arr[], int n) {
+
+        // Your code here
+        int s=0;
+        long p=0;
+        int i;
+        for(i=0;i<n;i++){
+            s+=arr[i];
+        }
+        for(i=0;i<n;i++){
+            if(p==s-p-arr[i]){
+                return i+1;
+            }
+            p=p+arr[i];
+        }
+        return -1;
+    }
+}
