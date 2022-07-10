@@ -1,0 +1,43 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+        Scanner sc = new Scanner(System.in);
+        int t=sc.nextInt();
+
+        while(t-->0){
+       int n =sc.nextInt(); 
+       int arr[]= new int[n];
+       for(int i=0;i<n;++i){
+       arr[i]= sc.nextInt();
+       }
+       System.out.println(new Solution().FindMaxSum(arr, n));
+       }
+	}
+}
+
+class Solution
+{
+    //Function to find the maximum money the thief can get.
+    public int FindMaxSum(int arr[], int n)
+    {
+        // Your code here
+        int a=0,b=0;
+        
+        for(int i=0;i<n;i++){
+            if(i%2==0){
+                a=Math.max(a+arr[i],b);
+            }
+            else{
+                b=Math.max(a,b+arr[i]);
+            }
+        }
+        return Math.max(a,b);
+    }
+}
