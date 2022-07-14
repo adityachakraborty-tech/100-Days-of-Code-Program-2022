@@ -1,0 +1,50 @@
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+        Scanner sc = new Scanner(System.in);
+
+        int t;
+        t = sc.nextInt();
+
+        String s12 =sc.nextLine(); 
+        for (int i=0; i<t; i++){
+             String s1= sc.nextLine();
+              String s2 =sc.nextLine(); 
+              Solution obj = new Solution(); 
+              boolean flag=obj.isRotated (s1, s2);
+               if(flag== true) 
+                  System.out.println("1");
+                else
+                  System.out.println("");
+        }
+	}
+}
+class Solution
+{
+    //Function to check if a string can be obtained by rotating
+    //another string by exactly 2 places.
+    public static boolean isRotated(String str1, String str2)
+    {
+        // Your code here
+        boolean f=false;
+        
+        for(int i=0;i<str1.length()-2;i++){
+            if(str1.charAt(i+2)==str2.charAt(i) || str2.charAt(i+2)==str1.charAt(i)){
+                f=true;
+            }
+            else{
+                f=false;
+                break;
+            }
+        }
+        return f;
+    }
+}
