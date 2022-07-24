@@ -1,0 +1,101 @@
+ //{ Driver Code Starts
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int tc = Integer.parseInt(br.readLine().trim());
+        while (tc-- > 0) {
+            String[] inputLine;
+            inputLine = br.readLine().trim().split(" ");
+            int n = Integer.parseInt(inputLine[0]);
+            int x = Integer.parseInt(inputLine[1]);
+            int y = Integer.parseInt(inputLine[2]);
+            int[] a = new int[n];
+            inputLine = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                a[i] = Integer.parseInt(inputLine[i]);
+            }
+            int[] b = new int[n];
+            inputLine = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                b[i] = Integer.parseInt(inputLine[i]);
+            }
+
+            long ans = new Solution().maxTip(a, b, n, x, y);
+            System.out.println(ans);
+        }
+    }
+}
+
+
+// } Driver Code Ends
+
+
+
+
+
+class Solution {
+    long maxTip(int[] a, int[] b, int n, int x, int y) {
+        // code here
+         pair diff[]=new pair [n];
+        for(int i=0;i<n;i++)
+            diff[i]=new pair(Math.abs(a[i]-b[i]),i);
+            
+        Arrays.sort(diff,new sort_by_diff());
+        long sum=0;
+        for(int i=0;i<diff.length;i++){
+            pair p=diff[i];
+            int ot=p.order;
+            if(a[ot]>b[ot]){
+                if(x>0){
+                    sum+=a[ot];
+                    x--;
+                }
+                else{
+                    sum+=b[ot];
+                    y--;
+                }
+            }
+            else if(a[ot]<b[ot]){
+                if(y>0){
+                    sum+=b[ot];
+                    y--;
+                }
+                else{
+                    sum+=a[ot];
+                    x--;
+                }
+            }
+            else{
+                if(x>y){
+                    sum+=a[ot];
+                    x--;
+                }
+                else{
+                    sum+=b[ot];
+                    y--;
+                }
+            }
+        }
+        return(sum);
+    }
+    
+    class pair{
+    int diff=0;
+    int order=0;
+    public pair(int d,int i){
+        diff=d;
+        order=i;
+    }
+    }
+    
+    class sort_by_diff implements Comparator<pair>{
+    public  int compare(pair a,pair b){
+        return(b.diff-a.diff);
+    }
+    }
+}
