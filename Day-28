@@ -1,0 +1,57 @@
+
+import java.io.*;
+import java.util.*;
+import java.math.*;
+
+class Main{
+    public static void main(String args[])throws IOException
+    {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(in.readLine());
+        while(t-- > 0){
+            String a[] = in.readLine().trim().split("\\s+");
+            int M = Integer.parseInt(a[0]);
+            int N = Integer.parseInt(a[1]);
+            int K = Integer.parseInt(a[2]);
+            
+            Solution ob = new Solution();
+            System.out.println(ob.knots(M, N, K));
+        }
+    }
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution{
+    static int knots(int M, int N, int K){
+        // code here
+        int mod = 1000000007;
+        int n = Math.max(M,N);
+        int d = K;
+        
+         d = Math.min(d,n-d);
+        
+        long dp[] = new long[K+1];
+        dp[0] = 1;
+        
+        long a = 0, b = 0;
+        for(int i = 1;i<=n;i++)
+        {
+            for(int j = Math.min(i,K); j > 0; j--){
+                dp[j] = (dp[j] + dp[j-1]) % mod;
+            if(i == M){
+                a = dp[K];
+            }
+            if(i == N)
+            {
+                b = dp[K];
+            }
+        }
+    }
+
+       long res = (a*b)%mod;
+       return (int)res;
+    }
+}
