@@ -1,0 +1,50 @@
+//{ Driver Code Starts
+//Initial Template for Java
+
+
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int tc = Integer.parseInt(br.readLine().trim());
+        while (tc-- > 0) {
+            String[] inputLine;
+            int n = Integer.parseInt(br.readLine().trim());
+            String[] arr = br.readLine().trim().split(" ");
+
+            String ans = new Solution().printLargest(arr);
+            System.out.println(ans);
+        }
+    }
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution {
+     class comp implements Comparator<String>{
+        public int compare(String a,String b){
+            String s1=a+b;
+            String s2=b+a;
+            return s2.compareTo(s1);
+        }
+    }
+    String printLargest(String[] arr) {
+        
+        Arrays.sort(arr,new comp());
+        if(arr[0].charAt(0)=='0'){
+            return "0";
+        }
+        String str="";
+        for(String s1:arr){
+            str+=s1;
+        }
+        return str;
+    }
+    
+}
