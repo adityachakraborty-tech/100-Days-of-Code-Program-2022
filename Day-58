@@ -1,0 +1,41 @@
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+        Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int sum1 = 0;
+		int sum2 = 0;
+		int max = 0 ;
+		int diff = 0 ;
+		int win = 0 ;
+		for(int i =0 ; i < n ; i++){
+		    
+		    sum1 += sc.nextInt();
+		    sum2 += sc.nextInt();
+		    if (sum1 > sum2){
+		        diff = sum1 - sum2;
+		        if(diff > max){
+		            max = diff;
+		            win = 1;
+		        }
+		    }
+		    else{
+		        diff = sum2 - sum1;
+		        if(diff > max ){
+		            max = diff;
+		            win = 2;
+		        }
+		    }
+		}
+		System.out.println(win + " " + max);
+	}
+}
+
