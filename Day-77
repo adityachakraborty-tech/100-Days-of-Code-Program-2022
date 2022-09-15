@@ -1,0 +1,37 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+			Scanner in = new Scanner(System.in);
+		int t,countn=0;
+		int t1,maxn,sumn;
+		t = in.nextInt();
+		while(t-->0)
+		{
+		    t1= in.nextInt();
+		    maxn = in.nextInt();
+		    sumn = in.nextInt();
+		    if(t1*maxn<=sumn)
+		    countn = t1*(int)Math.pow(maxn,2);
+		    else 
+		    {
+		        if(sumn%maxn==0)
+		        countn = (sumn/maxn)*(int)(Math.pow(maxn,2));
+		        else
+		        {
+		            int d =sumn%maxn;
+		            countn = ((sumn/maxn)*(int)(Math.pow(maxn,2))+(int)Math.pow(d,2));
+		        }
+		    }
+		    System.out.println(countn);
+		}
+	}
+}
