@@ -1,0 +1,28 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		Scanner s =new Scanner(System.in);
+		String a=s.next();
+		int n= s.nextInt();
+		for(int k=0;k<n;k++){
+			int c=0;
+			String b=s.next();
+			for(int i=0;i<b.length();i++){
+				for(int j=0;j<a.length();j++){
+					if(b.charAt(i)==a.charAt(j)) c++;
+				}
+			}
+			if(c==b.length()) System.out.println("Yes");
+			else System.out.println("No");
+		}
+	}
+}
